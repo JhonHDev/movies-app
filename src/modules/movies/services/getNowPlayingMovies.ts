@@ -10,13 +10,14 @@ const getNowPlayingMovies = async () => {
       `${MOVIES_NOW_PLAYING}`,
     );
 
-    console.log(' ');
-    console.log('--------------- NOW PLAYING MOVIES ---------------');
-    console.log(JSON.stringify(response.data, null, 2));
-    console.log('--------------- NOW PLAYING MOVIES  ---------------');
-    console.log(' ');
+    const {results: movies, ...rest} = response.data;
+    const mainMovie = movies[0];
 
-    return response.data;
+    return {
+      ...rest,
+      mainMovie,
+      results: movies.filter(movie => movie.id != mainMovie.id),
+    };
   } catch (error: any) {
     console.log(error);
     throw new Error('Error al obtener películas en cartelera');
