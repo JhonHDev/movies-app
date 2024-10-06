@@ -4,10 +4,15 @@ import {MOVIES_NOW_PLAYING} from '../../../config/api';
 
 import {NowPlayingMoviesResponse} from '../models/NowPlayingMoviesResponse';
 
-const getNowPlayingMovies = async () => {
+const getNowPlayingMovies = async (page?: number) => {
   try {
     const response = await moviesAPI.get<NowPlayingMoviesResponse>(
       `${MOVIES_NOW_PLAYING}`,
+      {
+        params: {
+          page: page || 1,
+        },
+      },
     );
 
     const {results: movies, ...rest} = response.data;

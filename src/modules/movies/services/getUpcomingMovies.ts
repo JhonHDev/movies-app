@@ -4,10 +4,15 @@ import {UpcomingMoviesResponse} from '../models/UpcomingMoviesResponse';
 
 import {UPCOMING_MOVIES} from '../../../config/api';
 
-const getUpcomingMovies = async () => {
+const getUpcomingMovies = async (page?: number) => {
   try {
     const response = await moviesAPI.get<UpcomingMoviesResponse>(
       `${UPCOMING_MOVIES}`,
+      {
+        params: {
+          page: page || 1,
+        },
+      },
     );
 
     console.log(' ');

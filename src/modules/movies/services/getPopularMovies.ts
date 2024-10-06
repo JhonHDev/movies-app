@@ -4,10 +4,15 @@ import {PopularMoviesResponse} from '../models/PopularMoviesResponse';
 
 import {POPULAR_MOVIES} from '../../../config/api';
 
-const getPopularMovies = async () => {
+const getPopularMovies = async (page?: number) => {
   try {
     const response = await moviesAPI.get<PopularMoviesResponse>(
       `${POPULAR_MOVIES}`,
+      {
+        params: {
+          page: page || 1,
+        },
+      },
     );
 
     console.log(' ');

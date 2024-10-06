@@ -34,7 +34,7 @@ const MovieCard = ({movie, isNowPlaying}: Props) => {
         <Image
           source={{uri: poster}}
           width={isNowPlaying ? 240 : 210}
-          height={isNowPlaying ? 450 : 250}
+          height={isNowPlaying ? 430 : 250}
           style={styles.movieImg}
         />
 

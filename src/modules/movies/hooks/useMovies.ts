@@ -1,4 +1,4 @@
-import {useQueries} from '@tanstack/react-query';
+import {useInfiniteQuery} from '@tanstack/react-query';
 
 import {
   getNowPlayingMovies,
@@ -8,40 +8,43 @@ import {
 } from '../services';
 
 const useMovies = () => {
-  const results = useQueries({
-    queries: [
-      {
-        queryKey: ['getNowPlayingMovies'],
-        queryFn: getNowPlayingMovies,
-      },
-      {
-        queryKey: ['getPopularMovies'],
-        queryFn: getPopularMovies,
-      },
-      {
-        queryKey: ['getTopRatedMovies'],
-        queryFn: getTopRatedMovies,
-      },
-      {
-        queryKey: ['getUpcomingMovies'],
-        queryFn: getUpcomingMovies,
-      },
-    ],
+  const popularMoviesQuery = useInfiniteQuery({
+    queryKey: ['getPopularMovies'],
+    queryFn: ({pageParam = 1}) => getPopularMovies(pageParam),
+    initialPageParam: 1,
+    getNextPageParam: lastPage => lastPage.page + 1,
+    staleTime: 3600000,
+  });
+
+  const playingMoviesQuery = useInfiniteQuery({
+    queryKey: ['getNowPlayingMovies'],
+    queryFn: ({pageParam = 1}) => getNowPlayingMovies(pageParam),
+    initialPageParam: 1,
+    getNextPageParam: lastPage => lastPage.page + 1,
+    staleTime: 3600000,
+  });
+
+  const topRatedMoviesQuery = useInfiniteQuery({
+    queryKey: ['getTopRatedMovies'],
+    queryFn: ({pageParam}) => getTopRatedMovies(pageParam),
+    initialPageParam: 1,
+    getNextPageParam: lastPage => lastPage.page + 1,
+    staleTime: 3600000,
+  });
+
+  const upcomingMoviesQuery = useInfiniteQuery({
+    queryKey: ['getUpcomingMovies'],
+    queryFn: ({pageParam}) => getUpcomingMovies(pageParam),
+    initialPageParam: 1,
+    getNextPageParam: lastPage => lastPage.page + 1,
+    staleTime: 3600000,
   });
 
   return {
-    nowPlayingMovies: {
-      ...results[0],
-    },
-    popularMovies: {
-      ...results[1],
-    },
-    topRatedMovies: {
-      ...results[2],
-    },
-    upcomingMovies: {
-      ...results[3],
-    },
+    popularMoviesQuery,
+    playingMoviesQuery,
+    topRatedMoviesQuery,
+    upcomingMoviesQuery,
   };
 };
 

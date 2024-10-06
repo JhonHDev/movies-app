@@ -10,8 +10,16 @@ import MainNowPlayingMovie from '../../components/MainNowPlayingMovie';
 import MoviesCarousel from '../../components/MoviesCarousel';
 
 const MoviesScreen = () => {
-  const {nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies} =
-    useMovies();
+  const {
+    popularMoviesQuery,
+    playingMoviesQuery,
+    topRatedMoviesQuery,
+    upcomingMoviesQuery,
+  } = useMovies();
+
+  const mainMovie = playingMoviesQuery.data?.pages.flatMap(
+    page => page.mainMovie,
+  )[0];
 
   return (
     <SafeAreaView>
@@ -19,44 +27,56 @@ const MoviesScreen = () => {
 
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.container}>
-          {nowPlayingMovies.data && (
+          {mainMovie && (
             <MainNowPlayingMovie
-              isFetching={nowPlayingMovies.isFetching}
-              mainMovie={nowPlayingMovies.data.mainMovie}
+              isFetching={playingMoviesQuery.isFetching}
+              mainMovie={mainMovie}
             />
           )}
 
           <View style={styles.moviesContainer}>
-            {popularMovies.data && (
+            {popularMoviesQuery.data && (
               <MoviesCarousel
-                isFetching={nowPlayingMovies.isFetching}
+                isFetching={popularMoviesQuery.isFetching}
                 title="Populares"
-                movies={popularMovies.data?.results}
+                movies={popularMoviesQuery.data.pages.flatMap(
+                  page => page.results,
+                )}
+                loadNextMoviesPage={popularMoviesQuery.fetchNextPage}
               />
             )}
 
-            {nowPlayingMovies.data && (
+            {playingMoviesQuery.data && (
               <MoviesCarousel
-                isFetching={nowPlayingMovies.isFetching}
+                isFetching={playingMoviesQuery.isFetching}
                 isNowPlaying
                 title="En cartelera"
-                movies={nowPlayingMovies.data?.results}
+                movies={playingMoviesQuery.data.pages.flatMap(
+                  page => page.results,
+                )}
+                loadNextMoviesPage={playingMoviesQuery.fetchNextPage}
               />
             )}
 
-            {topRatedMovies.data && (
+            {topRatedMoviesQuery.data && (
               <MoviesCarousel
-                isFetching={nowPlayingMovies.isFetching}
+                isFetching={topRatedMoviesQuery.isFetching}
                 title="Mejor valoradas"
-                movies={topRatedMovies.data?.results}
+                movies={topRatedMoviesQuery.data.pages.flatMap(
+                  page => page.results,
+                )}
+                loadNextMoviesPage={topRatedMoviesQuery.fetchNextPage}
               />
             )}
 
-            {upcomingMovies.data && (
+            {upcomingMoviesQuery.data && (
               <MoviesCarousel
-                isFetching={nowPlayingMovies.isFetching}
+                isFetching={upcomingMoviesQuery.isFetching}
                 title="Próximas en salir"
-                movies={upcomingMovies.data?.results}
+                movies={upcomingMoviesQuery.data.pages.flatMap(
+                  page => page.results,
+                )}
+                loadNextMoviesPage={upcomingMoviesQuery.fetchNextPage}
               />
             )}
           </View>

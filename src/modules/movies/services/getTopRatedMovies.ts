@@ -4,10 +4,15 @@ import {TopRatedMoviesResponse} from '../models/TopRatedMoviesResponse';
 
 import {TOP_RATED_MOVIES} from '../../../config/api';
 
-const getTopRatedMovies = async () => {
+const getTopRatedMovies = async (page?: number) => {
   try {
     const response = await moviesAPI.get<TopRatedMoviesResponse>(
       `${TOP_RATED_MOVIES}`,
+      {
+        params: {
+          page: page || 1,
+        },
+      },
     );
 
     console.log(' ');
