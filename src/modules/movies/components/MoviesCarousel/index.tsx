@@ -36,7 +36,7 @@ const MoviesCarousel = ({
     const {contentOffset, layoutMeasurement, contentSize} = e.nativeEvent;
 
     const isEndScroll =
-      contentOffset.x + layoutMeasurement.width + 200 >= contentSize.width;
+      contentOffset.x + layoutMeasurement.width + 500 >= contentSize.width;
 
     if (!isEndScroll) {
       return;

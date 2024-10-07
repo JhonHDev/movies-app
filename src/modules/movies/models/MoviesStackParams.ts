@@ -1,4 +1,4 @@
 export type MoviesStackParams = {
   MoviesScreen: undefined;
-  SingleMovieScreen: {movieId: number};
+  SingleMovieScreen: {movieId: number; isNowPlaying?: boolean};
 };

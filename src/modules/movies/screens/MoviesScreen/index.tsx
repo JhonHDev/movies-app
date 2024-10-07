@@ -30,6 +30,7 @@ const MoviesScreen = () => {
           {mainMovie && (
             <MainNowPlayingMovie
               isFetching={playingMoviesQuery.isFetching}
+              isNowPlaying
               mainMovie={mainMovie}
             />
           )}

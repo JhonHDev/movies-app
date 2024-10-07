@@ -9,12 +9,31 @@ const Stack = createStackNavigator<MoviesStackParams>();
 
 const MoviesStackNavigator = () => {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}>
-      <Stack.Screen name="MoviesScreen" component={MoviesScreen} />
-      <Stack.Screen name="SingleMovieScreen" component={SingleMovieScreen} />
+    <Stack.Navigator>
+      <Stack.Screen
+        name="MoviesScreen"
+        component={MoviesScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="SingleMovieScreen"
+        component={SingleMovieScreen}
+        options={{
+          headerStyle: {
+            backgroundColor: '#000',
+            borderBottomWidth: 0,
+            elevation: 0,
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            color: '#fff',
+          },
+          headerTitle: '',
+          headerBackTitle: ' ',
+        }}
+      />
     </Stack.Navigator>
   );
 };

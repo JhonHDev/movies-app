@@ -1,3 +1,5 @@
+import getMovieActorsById from './getMovieActorsById';
+import getMovieById from './getMovieById';
 import getNowPlayingMovies from './getNowPlayingMovies';
 import getPopularMovies from './getPopularMovies';
 import getTopRatedMovies from './getTopRatedMovies';
@@ -8,4 +10,6 @@ export {
   getUpcomingMovies,
   getTopRatedMovies,
   getPopularMovies,
+  getMovieById,
+  getMovieActorsById,
 };

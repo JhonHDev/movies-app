@@ -16,16 +16,20 @@ import {MoviesStackParams} from '../../models/MoviesStackParams';
 interface Props {
   mainMovie: NowPlayingMovie;
   isFetching: boolean;
+  isNowPlaying?: boolean;
 }
 
-const MainNowPlayingMovie = ({isFetching, mainMovie}: Props) => {
+const MainNowPlayingMovie = ({isFetching, mainMovie, isNowPlaying}: Props) => {
   const navigation = useNavigation<NavigationProp<MoviesStackParams>>();
 
   const releaseYear = new Date(mainMovie.release_date).getFullYear();
   const poster = `https://image.tmdb.org/t/p/w500/${mainMovie.poster_path}`;
 
   const goToSeeMovieDetails = () => {
-    navigation.navigate('SingleMovieScreen', {movieId: mainMovie.id});
+    navigation.navigate('SingleMovieScreen', {
+      movieId: mainMovie.id,
+      isNowPlaying,
+    });
   };
 
   if (isFetching) {

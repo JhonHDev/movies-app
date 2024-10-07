@@ -10,17 +10,16 @@ interface Props {
   isNowPlaying?: boolean;
 }
 
-//rating: vote_average
-
 const MovieCard = ({movie, isNowPlaying}: Props) => {
   const navigation = useNavigation<NavigationProp<MoviesStackParams>>();
 
-  const releaseDate = new Date(movie.release_date);
   const poster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
-  const backdrop = `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`;
 
   const goToSeeMovieDetails = () => {
-    navigation.navigate('SingleMovieScreen', {movieId: movie.id});
+    navigation.navigate('SingleMovieScreen', {
+      movieId: movie.id,
+      isNowPlaying,
+    });
   };
 
   return (
@@ -55,7 +54,7 @@ const MovieCard = ({movie, isNowPlaying}: Props) => {
                 fontSize: 18,
                 fontWeight: 'bold',
               }}>
-              Recién lanzado
+              En cartelera
             </Text>
           </View>
         )}
