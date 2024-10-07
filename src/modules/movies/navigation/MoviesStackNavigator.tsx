@@ -22,13 +22,13 @@ const MoviesStackNavigator = () => {
         component={SingleMovieScreen}
         options={{
           headerStyle: {
-            backgroundColor: '#000',
-            borderBottomWidth: 0,
             elevation: 0,
+            backgroundColor: '#000',
+            shadowColor: 'transparent',
           },
-          headerTintColor: '#fff',
+          headerTintColor: '#FFF',
           headerTitleStyle: {
-            color: '#fff',
+            color: '#FFF',
           },
           headerTitle: '',
           headerBackTitle: ' ',

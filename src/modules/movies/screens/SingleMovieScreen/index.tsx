@@ -58,13 +58,11 @@ const SingleMovieScreen = ({route, navigation}: Props) => {
   const releaseYear = new Date(movie.release_date).getFullYear();
 
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: '#000',
       }}>
-      <StatusBar backgroundColor="#000" />
-
       <ScrollView contentContainerStyle={styles.container}>
         <View style={{gap: 30}}>
           <View>
@@ -184,14 +182,14 @@ const SingleMovieScreen = ({route, navigation}: Props) => {
           )}
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     minHeight: Dimensions.get('screen').height,
-    paddingBottom: 40,
+    paddingBottom: 100,
   },
   movieImg: {
     objectFit: 'cover',
