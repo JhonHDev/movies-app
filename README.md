@@ -1,43 +1,47 @@
-# Movies React Native App
+# Movies App (status: En desarollo)
 
-# Step 1: Environment variables
+Aplicación creada con React Native que permite ver información sobre películas, ver actores, buscar películas por nombre y agregarlas a favoritos. Además, contiene notificaciones push con películas recomendadas según tu navegación en la app.
 
-Adding the required environment variables to the .env file
+## Para usar el proyecto
+
+1. Clonar el repositorio
+
+```
+git clone hhttps://github.com/JhonHDev/movies-app.git
+```
+
+2. Instalar los node modules
+
+```bash
+# npm
+npm install
+
+# Yarn
+yarn install
+```
+
+3. Crear el archivo .env y añadir las variables de entorno
 
 ```
 THE_MOVIE_DB_API_KEY=
 ```
 
-## Step 2: Start the Metro Server
+4. Levantar el Metro Server e iniciar la App
 
 ```bash
-# using npm
+# npm
 npm start
 
-# OR using Yarn
+# Yarn
 yarn start
-```
-
-## Step 3: Start your Application
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
 ### Linkedin 👋🏼
 
 - [Linkedin](https://www.linkedin.com/in/jhon-esteban-herrera)
+
+## Vista previa
+
+![](https://res.cloudinary.com/dxnkaz9ad/image/upload/v1728325144/Screenshot_1728322776_gpllti.png)
+
+![](https://res.cloudinary.com/dxnkaz9ad/image/upload/v1728325278/Screenshot_1728322787_zjarae.png)
