@@ -15,14 +15,7 @@ const getNowPlayingMovies = async (page?: number) => {
       },
     );
 
-    const {results: movies, ...rest} = response.data;
-    const mainMovie = movies[0];
-
-    return {
-      ...rest,
-      mainMovie,
-      results: movies.filter(movie => movie.id != mainMovie.id),
-    };
+    return response.data;
   } catch (error: any) {
     console.log(error);
     throw new Error('Error al obtener películas en cartelera');

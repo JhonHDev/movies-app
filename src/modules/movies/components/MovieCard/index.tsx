@@ -32,8 +32,8 @@ const MovieCard = ({movie, isNowPlaying}: Props) => {
       <View style={styles.movieContainer}>
         <Image
           source={{uri: poster}}
-          width={isNowPlaying ? 240 : 210}
-          height={isNowPlaying ? 430 : 250}
+          width={isNowPlaying ? 200 : 150}
+          height={isNowPlaying ? 300 : 180}
           style={styles.movieImg}
         />
 
@@ -51,7 +51,7 @@ const MovieCard = ({movie, isNowPlaying}: Props) => {
             <Text
               style={{
                 color: '#FFF',
-                fontSize: 18,
+                fontSize: 14,
                 fontWeight: 'bold',
               }}>
               En cartelera
@@ -73,11 +73,6 @@ const styles = StyleSheet.create({
   movieImg: {
     flex: 1,
     objectFit: 'cover',
-    borderRadius: 14,
-    shadowColor: 'red',
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
+    borderRadius: 10,
   },
 });

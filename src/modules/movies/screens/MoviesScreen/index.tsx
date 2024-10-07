@@ -1,12 +1,12 @@
 import React from 'react';
 
-import {Dimensions, StatusBar, StyleSheet, View} from 'react-native';
+import {Dimensions, StatusBar, StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import useMovies from '../../hooks/useMovies';
 
-import MainNowPlayingMovie from '../../components/MainNowPlayingMovie';
+import MovieHeader from '../../components/MovieHeader';
 import MoviesCarousel from '../../components/MoviesCarousel';
 
 const MoviesScreen = () => {
@@ -17,21 +17,34 @@ const MoviesScreen = () => {
     upcomingMoviesQuery,
   } = useMovies();
 
-  const mainMovie = playingMoviesQuery.data?.pages.flatMap(
-    page => page.mainMovie,
-  )[0];
-
   return (
     <SafeAreaView>
       <StatusBar backgroundColor="#000" />
 
+      <MovieHeader />
+
       <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.container}>
-          {mainMovie && (
-            <MainNowPlayingMovie
+        <View style={styles.moviesContainer}>
+          {topRatedMoviesQuery.data && (
+            <MoviesCarousel
+              isFetching={topRatedMoviesQuery.isFetching}
+              title="Mejor valoradas"
+              movies={topRatedMoviesQuery.data.pages.flatMap(
+                page => page.results,
+              )}
+              loadNextMoviesPage={topRatedMoviesQuery.fetchNextPage}
+            />
+          )}
+
+          {playingMoviesQuery.data && (
+            <MoviesCarousel
               isFetching={playingMoviesQuery.isFetching}
               isNowPlaying
-              mainMovie={mainMovie}
+              title="En cartelera"
+              movies={playingMoviesQuery.data.pages.flatMap(
+                page => page.results,
+              )}
+              loadNextMoviesPage={playingMoviesQuery.fetchNextPage}
             />
           )}
 
@@ -44,29 +57,6 @@ const MoviesScreen = () => {
                   page => page.results,
                 )}
                 loadNextMoviesPage={popularMoviesQuery.fetchNextPage}
-              />
-            )}
-
-            {playingMoviesQuery.data && (
-              <MoviesCarousel
-                isFetching={playingMoviesQuery.isFetching}
-                isNowPlaying
-                title="En cartelera"
-                movies={playingMoviesQuery.data.pages.flatMap(
-                  page => page.results,
-                )}
-                loadNextMoviesPage={playingMoviesQuery.fetchNextPage}
-              />
-            )}
-
-            {topRatedMoviesQuery.data && (
-              <MoviesCarousel
-                isFetching={topRatedMoviesQuery.isFetching}
-                title="Mejor valoradas"
-                movies={topRatedMoviesQuery.data.pages.flatMap(
-                  page => page.results,
-                )}
-                loadNextMoviesPage={topRatedMoviesQuery.fetchNextPage}
               />
             )}
 
@@ -92,10 +82,10 @@ export default MoviesScreen;
 const styles = StyleSheet.create({
   container: {
     minHeight: Dimensions.get('screen').height,
-    paddingBottom: 40,
     backgroundColor: '#000',
   },
   moviesContainer: {
-    gap: 40,
+    gap: 14,
+    paddingBottom: 80,
   },
 });

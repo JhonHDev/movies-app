@@ -36,7 +36,7 @@ const MoviesCarousel = ({
     const {contentOffset, layoutMeasurement, contentSize} = e.nativeEvent;
 
     const isEndScroll =
-      contentOffset.x + layoutMeasurement.width + 500 >= contentSize.width;
+      contentOffset.x + layoutMeasurement.width + 700 >= contentSize.width;
 
     if (!isEndScroll) {
       return;
@@ -55,7 +55,7 @@ const MoviesCarousel = ({
           renderItem={({item}) => (
             <MovieCard movie={item} isNowPlaying={isNowPlaying} />
           )}
-          keyExtractor={item => item.id.toString()}
+          keyExtractor={(item, index) => item.id.toString() + '_' + index}
           horizontal
           showsHorizontalScrollIndicator={false}
           onScroll={handleOnScroll}
@@ -73,6 +73,6 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     color: '#FFF',
     fontWeight: 'bold',
-    fontSize: 24,
+    fontSize: 20,
   },
 });
