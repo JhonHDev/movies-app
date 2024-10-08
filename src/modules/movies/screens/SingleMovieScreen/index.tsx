@@ -1,24 +1,21 @@
 import React from 'react';
 import {StackScreenProps} from '@react-navigation/stack';
+import {ScrollView} from 'react-native-gesture-handler';
 
 import {
   View,
   Text,
   StyleSheet,
   ActivityIndicator,
-  StatusBar,
   Dimensions,
   Alert,
   Image,
-  Pressable,
 } from 'react-native';
+
+import {MoviesStackParams} from '../../models/MoviesStackParams';
 
 import useMovie from '../../hooks/useMovie';
 
-import {MoviesStackParams} from '../../models/MoviesStackParams';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {ScrollView} from 'react-native-gesture-handler';
-import MovieActorCard from '../../components/MovieActorCard';
 import MoviesActorsCarousel from '../../components/MovieActorsCarousel';
 
 interface Props
@@ -135,11 +132,17 @@ const SingleMovieScreen = ({route, navigation}: Props) => {
               {movieGenres}
             </Text>
 
-            <Text style={{color: 'white', fontSize: 18, fontWeight: '500'}}>
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 18,
+                fontWeight: '500',
+                marginBottom: 16,
+              }}>
               {movie.overview}
             </Text>
 
-            <View
+            {/* <View
               style={{
                 justifyContent: 'center',
                 alignItems: 'flex-end',
@@ -157,7 +160,7 @@ const SingleMovieScreen = ({route, navigation}: Props) => {
                   Mi lista
                 </Text>
               </Pressable>
-            </View>
+            </View> */}
           </View>
         </View>
 

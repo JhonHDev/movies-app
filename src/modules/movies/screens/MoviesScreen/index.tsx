@@ -6,7 +6,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 
 import useMovies from '../../hooks/useMovies';
 
-import MovieHeader from '../../components/MovieHeader';
+import CustomHeader from '../../../../shared/components/CustomHeader';
 import MoviesCarousel from '../../components/MoviesCarousel';
 
 const MoviesScreen = () => {
@@ -21,7 +21,7 @@ const MoviesScreen = () => {
     <SafeAreaView>
       <StatusBar backgroundColor="#000" />
 
-      <MovieHeader />
+      <CustomHeader />
 
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.moviesContainer}>

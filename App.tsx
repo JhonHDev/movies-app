@@ -5,7 +5,7 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
-import MoviesStackNavigator from './src/modules/movies/navigation/MoviesStackNavigator';
+import AppDrawerNavigator from './src/navigation/AppDrawerNavigator';
 
 const queryClient = new QueryClient();
 
@@ -13,7 +13,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
-        <MoviesStackNavigator />
+        <AppDrawerNavigator />
       </NavigationContainer>
     </QueryClientProvider>
   );

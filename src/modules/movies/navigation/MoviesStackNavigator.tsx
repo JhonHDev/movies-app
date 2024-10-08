@@ -9,7 +9,12 @@ const Stack = createStackNavigator<MoviesStackParams>();
 
 const MoviesStackNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        cardStyle: {
+          backgroundColor: '#000',
+        },
+      }}>
       <Stack.Screen
         name="MoviesScreen"
         component={MoviesScreen}
