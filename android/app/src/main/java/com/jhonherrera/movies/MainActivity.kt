@@ -1,4 +1,4 @@
-package com.moviesapp
+package com.jhonherrera.movies
 
 import android.os.Bundle;
 
