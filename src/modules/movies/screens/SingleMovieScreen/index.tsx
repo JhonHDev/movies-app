@@ -17,6 +17,7 @@ import {MoviesStackParams} from '../../models/MoviesStackParams';
 import useMovie from '../../hooks/useMovie';
 
 import MoviesActorsCarousel from '../../components/MovieActorsCarousel';
+import CustomIonIcon from '../../../../shared/components/CustomIonIcon';
 
 interface Props
   extends StackScreenProps<MoviesStackParams, 'SingleMovieScreen'> {}
@@ -49,10 +50,15 @@ const SingleMovieScreen = ({route, navigation}: Props) => {
     return;
   }
 
-  const poster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+  const poster = movie.poster_path
+    ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+    : null;
+
+  const releaseYear = movie.release_date
+    ? new Date(movie.release_date).getFullYear()
+    : null;
 
   const movieGenres = movie.genres.map(movie => movie.name).join('- ');
-  const releaseYear = new Date(movie.release_date).getFullYear();
 
   return (
     <View
@@ -63,12 +69,26 @@ const SingleMovieScreen = ({route, navigation}: Props) => {
       <ScrollView contentContainerStyle={styles.container}>
         <View style={{gap: 30}}>
           <View>
-            <Image
-              source={{uri: poster}}
-              width={Dimensions.get('screen').width}
-              height={Dimensions.get('screen').height / 2}
-              style={styles.movieImg}
-            />
+            {poster ? (
+              <Image
+                source={{uri: poster}}
+                width={Dimensions.get('screen').width}
+                height={Dimensions.get('screen').height / 2}
+                style={styles.movieImg}
+              />
+            ) : (
+              <View
+                style={{
+                  width: Dimensions.get('screen').width,
+                  height: Dimensions.get('screen').height / 2,
+                  borderWidth: 1,
+                  borderColor: '#9f9f9f',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <CustomIonIcon name="ban-outline" size={60} color="#9f9f9f" />
+              </View>
+            )}
 
             {isNowPlaying && (
               <View
@@ -109,17 +129,19 @@ const SingleMovieScreen = ({route, navigation}: Props) => {
                 {movie.title}
               </Text>
 
-              <Text
-                style={{
-                  color: '#FFF',
-                  fontSize: 15,
-                  fontWeight: '700',
-                  opacity: 0.8,
-                  alignSelf: 'flex-start',
-                  marginTop: 10,
-                }}>
-                Año: {releaseYear}
-              </Text>
+              {releaseYear && (
+                <Text
+                  style={{
+                    color: '#FFF',
+                    fontSize: 15,
+                    fontWeight: '700',
+                    opacity: 0.8,
+                    alignSelf: 'flex-start',
+                    marginTop: 10,
+                  }}>
+                  Año: {releaseYear}
+                </Text>
+              )}
             </View>
 
             <Text
