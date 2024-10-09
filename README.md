@@ -2,6 +2,10 @@
 
 Aplicación creada con React Native que permite ver información sobre películas, ver actores, buscar películas por nombre y agregarlas a favoritos. Además, contiene notificaciones push con películas recomendadas según tu navegación en la app.
 
+## Vista previa
+
+![](https://res.cloudinary.com/dxnkaz9ad/image/upload/v1728453200/preview-movies-app_av2eye.png)
+
 ## Para usar el proyecto
 
 1. Clonar el repositorio
@@ -39,9 +43,3 @@ yarn start
 ### Linkedin 👋🏼
 
 - [Linkedin](https://www.linkedin.com/in/jhon-esteban-herrera)
-
-## Vista previa
-
-![](https://res.cloudinary.com/dxnkaz9ad/image/upload/v1728325144/Screenshot_1728322776_gpllti.png)
-
-![](https://res.cloudinary.com/dxnkaz9ad/image/upload/v1728325278/Screenshot_1728322787_zjarae.png)
