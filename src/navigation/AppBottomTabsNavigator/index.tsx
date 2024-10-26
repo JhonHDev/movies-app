@@ -2,6 +2,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import MoviesStackNavigator from '../../modules/movies/navigation/MoviesStackNavigator';
 import SearchStackNavigator from '../../modules/search/navigation/SearchStackNavigator';
+import ProfileStackNavigator from '../../modules/profile/navigation/ProfileStackNavigator';
 
 import CustomIonIcon from '../../shared/components/CustomIonIcon';
 
@@ -39,6 +40,17 @@ const AppBottomTabsNavigator = () => {
           title: 'Buscar',
           tabBarIcon: ({color}) => (
             <CustomIonIcon name="search" size={20} color={color} />
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="ProfileStackNavigator"
+        component={ProfileStackNavigator}
+        options={{
+          title: 'Perfil',
+          tabBarIcon: ({color}) => (
+            <CustomIonIcon name="person-outline" size={20} color={color} />
           ),
         }}
       />
